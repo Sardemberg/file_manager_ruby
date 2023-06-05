@@ -1,14 +1,13 @@
-require_relative './base_command'
-require 'colorize'
-
 module Commands
     class List < BaseCommand
         def initialize(params)
             @current_path = params[:current_path]
-            @custom_path = params[:custom_path]
+            @user_params = params[:user_params]
         end
         
         def process
+            @custom_path ||= @user_params
+
             if @custom_path
                 show_files(@custom_path)
             else
@@ -23,7 +22,8 @@ module Commands
         private
 
         def show_files(path)
-            Dir.entries(path).each do |info|
+            entries = Dir.entries(path).sort
+            entries.each do |info|
                 puts info.blue
             end
         end
