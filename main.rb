@@ -32,7 +32,10 @@ while true do
         :ls => Commands::List,
         :cd => Commands::Open,
         :mkdir => Commands::Mkdir,
-        :rm => Commands::Remove
+        :rm => Commands::Remove,
+        :mv => Commands::Move,
+        :chmod => Commands::Permission,
+        :ln => Commands::Symlink
     }
 
     final_command = dict_commands[command.to_sym]
